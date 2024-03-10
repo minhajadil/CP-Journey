@@ -1,0 +1,126 @@
+#include<bits/stdc++.h>
+using namespace std ;
+ 
+//............// define///.................... //
+ 
+typedef long long ll;
+typedef unsigned long long ull;
+typedef long double lld;
+ 
+#define fastio() ios_base::sync_with_stdio(false);cin.tie(NULL);cout.tie(NULL)
+#define MOD 1000000007
+#define MOD1 998244353
+#define INF 1e18
+#define endl "\n"
+#define pb push_back
+#define ppb pop_back
+#define mp make_pair
+#define ff first
+#define ss second
+#define PI 3.141592653589793238462
+#define set_bits __builtin_popcountll
+#define sz(x) ((int)(x).size())
+#define all(x) (x).begin(), (x).end()
+#define vc vector
+#define vi vc<int>
+#define vll vc<ll>
+#define pii pair<int,int>
+#define fr(i,a,b) for(ll i=a;i<=b;i++)
+#define coutv(v) for(auto it:v)cout<<it<<' ';cout<<endl;
+#define cinv(v) for(auto &it:v)cin>>it;
+ll llmin(ll a , ll b){if(a<b) return a ; else return b ;}
+ll llmax(ll a , ll b) {if(a>b) return a ; else return b ;}
+ 
+ 
+///...........................//////////////
+ 
+ 
+ 
+ 
+void solve()
+{
+  int n ; cin >> n ;
+  int a[n+1] ;
+ 
+  for(int i =1 ;i<=n ;i++)
+  {
+   cin >> a[i] ;
+  }
+ 
+  long long pref[n+1] ;
+  pref[0] =0 ;
+ 
+  for(int i =1 ;i<=n ;i++)
+  {
+   pref[i]= a[i]+pref[i-1] ;
+  // cout << pref[i] << " " ;
+  }
+ // cout << endl ;
+ 
+ 
+ 
+  
+  ll ans =-1  ;
+ 
+  for(int i =1 ;i<=n ;i++)
+  {
+   if(n%i==0 )
+   {
+    ll mn = INF ;
+        ll mx =-1 ;
+    for(int j = i ;j<=n ;j+=i)
+    {
+     mn = llmin(abs(pref[j]-pref[j-i]),mn) ;
+     mx = llmax(abs(pref[j]-pref[j-i]),mx) ;
+    }
+    // cout << i << endl ;
+    // cout << mx << " " << mn << endl ;
+    ans = llmax(mx-mn,ans) ;
+   }
+  }
+ 
+  cout << ans <<endl ;
+ 
+ 
+ 
+}
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+int main()
+{
+fastio() ;
+  #ifndef ONLINE_JUDGE
+  freopen("Error.in", "w", stderr);
+#endif
+ 
+ 
+   int t ; cin >> t ;
+   while(t--)
+   {
+ 
+     solve() ;
+    }
+ 
+ 
+ 
+ 
+ 
+}
+ 
+ 
+ 
+ 
+ 
+ 
